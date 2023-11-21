@@ -7,10 +7,10 @@ import numpy as np
 def add_employee(phone, employee_name, salary, designation, address, email, branch):
     try:
         mydb = mysql.connector.connect(host='localhost', user='root',
-                               passwd="root", db='ems')
+                               passwd="root", db='employees')
         cur = mydb.cursor()
         sql = (
-            f"INSERT INTO employees (name, salary, designation, phone, email, address, branch) values('{employee_name}', {salary}, '{designation}',{phone}, '{address}', '{email}', '{branch}')")
+            f"INSERT INTO emloyees (name, salary, designation, phone, email, address, branch) values('{employee_name}', {salary}, '{designation}',{phone}, '{address}', '{email}', '{branch}')")
         cur.execute(sql)
         mydb.commit()
         print(cur.rowcount, "was inserted.")
@@ -27,7 +27,7 @@ def add_employee(phone, employee_name, salary, designation, address, email, bran
 def update_employee(employee_name, salary):
     try:
         mydb = mysql.connector.connect(host='localhost', user='root',
-                               passwd="root", db='ems')
+                               passwd="root", db='employees')
         cur = mydb.cursor()
         sql = f"Update employees set Salary = {salary} where name = '{employee_name}'"
         cur.execute(sql)
@@ -47,7 +47,7 @@ def update_employee(employee_name, salary):
 def delete_employee(employee_name):
     try:
         mydb = mysql.connector.connect(host='localhost', user='root',
-                               passwd="root", db='ems')
+                               passwd="root", db='employees')
         cur = mydb.cursor()
         sql = f"Delete from employees where name = '{employee_name}'"
         cur.execute(sql)
@@ -67,7 +67,7 @@ def delete_employee(employee_name):
 def display_employees():
     try:
         mydb = mysql.connector.connect(host='localhost', user='root',
-                               passwd="root", db='ems')
+                               passwd="root", db='employees')
         cur = mydb.cursor()
         command = cur.execute('SELECT * FROM employees')
         results = cur.fetchall()
