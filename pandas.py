@@ -54,43 +54,40 @@ def view_students():
     cor = np.array(ids)
     hei = 0
 
-    choice = input("--- Choose ---\n1.Graph\n2.Text")
-    if choice == '1':
-        print("--- Student Records ---")
-        with open(student_database, "r", encoding="utf-8") as f:
-            reader = csv.reader(f)
-            for x in student_fields:
-                print(x, end='    |')
-            print("\n-----------------------------------------------------------------")
+    print("--- Student Records ---")
+    with open(student_database, "r", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        for x in student_fields:
+            print(x, end='    |')
+        print("\n-----------------------------------------------------------------")
 
-            # for graphs
-            for row in reader:
-                if len(row) > 0:
-                    if row[0] == row[0]:
-                        hei += 1
-                        ids.append(hei)
-                        marks.append(int(row[2]))
-                        names.append(row[1])
+        # for graphs
+        for row in reader:
+            if len(row) > 0:
+                if row[0] == row[0]:
+                    hei += 1
+                    ids.append(hei)
+                    marks.append(int(row[2]))
+                    names.append(row[1])
 
-                # for print all students
-                print("\n")
-                ps = pd.series(marks)
-                print("ps", ps)
-                for item in row:
-                    print(item, end=" |")
+            # for print all students
+            print("\n")
+            ps = pd.series(marks)
+            print("ps", ps)
+            for item in row:
+                print(item, end=" |")
 
-    elif choice == '2':
-        # bar graph
-        data = np.array(marks)
-        left_coordinates = ids
-        heights = data
-        bar_labels = names
-        plt.bar(left_coordinates, heights, tick_label=bar_labels,
-                width=0.6, color=['black', 'blue'])
-        plt.xlabel('Students')
-        plt.ylabel('Marks')
-        plt.title(" Marks Analysis")
-        plt.show()
+            # bar graph
+            data = np.array(marks)
+            left_coordinates = ids
+            heights = data
+            bar_labels = names
+            plt.bar(left_coordinates, heights, tick_label=bar_labels,
+                    width=0.6, color=['black', 'blue'])
+            plt.xlabel('Students')
+            plt.ylabel('Marks')
+            plt.title(" Marks Analysis")
+            plt.show()
 
 
 # search student
